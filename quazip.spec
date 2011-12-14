@@ -30,6 +30,7 @@ from and writing to ZIP archives.
 #------------------------------------------------------------------------------
 
 %package -n %libname
+Summary:	Qt/C++ wrapper for the minizip library
 %rename quazip
 
 %description -n %libname
