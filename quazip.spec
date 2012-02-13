@@ -82,7 +82,7 @@ sed -i 's\test/[a-zA-Z]*\\g' %{name}.pro
 dos2unix COPYING NEWS doc/html/*
 
 %build
-%{qmake_qt4} PREFIX=%{_prefix} LIBS+=-lzip
+%{qmake_qt4} PREFIX=%{_prefix} LIBS+=-lz
 make
 
 doxygen Doxyfile
