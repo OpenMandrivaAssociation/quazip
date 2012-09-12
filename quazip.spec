@@ -2,7 +2,7 @@
 %define develname %mklibname -d quazip 1
 
 Name:		quazip
-Version:	0.4.4
+Version:	0.5
 Release:	1
 Summary:	Qt/C++ wrapper for the minizip library
 License:	LGPLv2+
@@ -45,7 +45,7 @@ QuaZIP provides complete abstraction of the ZIP/UNZIP API, for both reading
 from and writing to ZIP archives.
 
 %files -n %libname
-%doc COPYING* NEWS
+%doc COPYING*
 %{_libdir}/*.so.*
 
 #------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ The %{develname} package contains libraries, header files and documentation
 for developing applications that use %{libname}.
 
 %files -n %develname
-%doc COPYING* NEWS
+%doc COPYING*
 %doc doc/html
 %{_includedir}/%{name}
 %{_libdir}/*.so
@@ -79,7 +79,7 @@ sed -i 's\PREFIX/lib\PREFIX/%{_lib}\' %{name}/%{name}.pro
 # removing test programs
 sed -i 's\test/[a-zA-Z]*\\g' %{name}.pro
 
-dos2unix COPYING NEWS doc/html/*
+dos2unix COPYING doc/html/*
 
 %build
 %{qmake_qt4} PREFIX=%{_prefix} LIBS+=-lz
