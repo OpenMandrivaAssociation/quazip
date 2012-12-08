@@ -1,9 +1,11 @@
-%define libname %mklibname quazip 1
-%define develname %mklibname -d quazip 1
+%define major 1
+
+%define libname %mklibname %{name} %{major}
+%define develname %mklibname -d %{name}
 
 Name:		quazip
-Version:	0.5
-Release:	1
+Version:	0.4.4
+Release:	3
 Summary:	Qt/C++ wrapper for the minizip library
 License:	LGPLv2+
 Group:		System/Libraries
@@ -29,11 +31,11 @@ from and writing to ZIP archives.
 
 #------------------------------------------------------------------------------
 
-%package -n %libname
+%package -n %{libname}
 Summary:	Qt/C++ wrapper for the minizip library
 %rename quazip
 
-%description -n %libname
+%description -n %{libname}
 QuaZIP is a simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package that
 can be used to access ZIP archives. It uses Trolltech's Qt toolkit.
 
@@ -44,13 +46,13 @@ whatever you would like to use on your zipped files.
 QuaZIP provides complete abstraction of the ZIP/UNZIP API, for both reading
 from and writing to ZIP archives.
 
-%files -n %libname
-%doc COPYING*
-%{_libdir}/*.so.*
+%files -n %{libname}
+%doc COPYING* NEWS
+%{_libdir}/*.so.%{major}*
 
 #------------------------------------------------------------------------------
 
-%package -n %develname
+%package -n %{develname}
 Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
@@ -58,13 +60,14 @@ Requires:	zlib-devel
 Requires:	qt4-devel
 Provides:	quazip-devel = %{version}-%{release}
 Obsoletes:	quazip-devel <= 0.4.3-1
+Obsoletes:	%{mklibname -d quazip 1} < 0.4.4-2
 
-%description -n %develname
-The %{develname} package contains libraries, header files and documentation
+%description -n %{develname}
+This package contains libraries, header files and documentation
 for developing applications that use %{libname}.
 
-%files -n %develname
-%doc COPYING*
+%files -n %{develname}
+%doc COPYING* NEWS
 %doc doc/html
 %{_includedir}/%{name}
 %{_libdir}/*.so
@@ -79,7 +82,7 @@ sed -i 's\PREFIX/lib\PREFIX/%{_lib}\' %{name}/%{name}.pro
 # removing test programs
 sed -i 's\test/[a-zA-Z]*\\g' %{name}.pro
 
-dos2unix COPYING doc/html/*
+dos2unix COPYING NEWS doc/html/*
 
 %build
 %{qmake_qt4} PREFIX=%{_prefix} LIBS+=-lz
@@ -92,3 +95,20 @@ done
 
 %install
 make INSTALL="install -p" INSTALL_ROOT=%{buildroot} install
+
+
+%changelog
+* Mon Feb 13 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.4.4-1
++ Revision: 773840
+- linkage fix
+- version update 0.4.4
+
+* Wed Dec 14 2011 Dmitry Mikhirev <dmikhirev@mandriva.org> 0.4.3-2
++ Revision: 741223
+- missed summary added
+- package fixed to comply libraries policy
+
+* Tue Nov 22 2011 Alexander Khrukin <akhrukin@mandriva.org> 0.4.3-1
++ Revision: 732386
+- imported package quazip
+
