@@ -1,20 +1,19 @@
 %define major 1
 %define libname %mklibname %{name} %{major}
-%define develname %mklibname -d %{name}
+%define devname %mklibname -d %{name}
 
+Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
 Version:	0.5.1
 Release:	5
-Summary:	Qt/C++ wrapper for the minizip library
 License:	LGPLv2+
 Group:		System/Libraries
-URL:		http://quazip.sourceforge.net/
+Url:		http://quazip.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
-BuildRequires:	qt4-devel
-BuildRequires:	libzip-devel
-Requires:	pkgconfig(zlib)
 BuildRequires:	doxygen
 BuildRequires:	graphviz
+BuildRequires:	pkgconfig(libzip)
+BuildRequires:	pkgconfig(QtCore)
 
 %description
 QuaZIP is a simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package that
@@ -45,29 +44,25 @@ QuaZIP provides complete abstraction of the ZIP/UNZIP API, for both reading
 from and writing to ZIP archives.
 
 %files -n %{libname}
-%{_libdir}/*.so.%{major}*
+%{_libdir}/libquazip.so.%{major}*
 
 #------------------------------------------------------------------------------
 
-%package -n %{develname}
+%package -n %{devname}
 Summary:	Development files for %{name}
 Group:		Development/Other
 Requires:	%{libname} = %{version}-%{release}
-Requires:	pkgconfig(zlib)
-Requires:	qt4-devel
-Provides:	quazip-devel = %{version}-%{release}
-Obsoletes:	quazip-devel <= 0.4.3-1
-Obsoletes:	%{mklibname -d quazip 1} < 0.4.4-2
+Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{develname}
+%description -n %{devname}
 This package contains libraries, header files and documentation
 for developing applications that use %{libname}.
 
-%files -n %{develname}
+%files -n %{devname}
 %doc COPYING* NEWS.txt README.txt
 %doc doc/html
 %{_includedir}/%{name}
-%{_libdir}/*.so
+%{_libdir}/libquazip.so
 
 #------------------------------------------------------------------------------
 
