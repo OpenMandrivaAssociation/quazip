@@ -1,11 +1,12 @@
 %define major 1
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
+%define debug_package %nil
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
-Version:	0.6.2
-Release:	4
+Version:	0.7.1
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://quazip.sourceforge.net/
@@ -13,7 +14,7 @@ Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
-BuildRequires:	pkgconfig(QtCore)
+BuildRequires:	qt5-devel
 
 %description
 QuaZIP is a simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package that
@@ -75,8 +76,8 @@ sed -i 's\PREFIX/lib\PREFIX/%{_lib}\' %{name}/%{name}.pro
 sed -i 's\qztest\\g' %{name}.pro
 
 %build
-%qmake_qt4 PREFIX=%{_prefix} QMAKE_CXXFLAGS_RELEASE= LIBS+=-lz
-make
+%qmake_qt5 PREFIX=%{_prefix} QMAKE_CXXFLAGS_RELEASE= LIBS+=-lz
+%make
 
 doxygen Doxyfile
 for file in doc/html/*; do
