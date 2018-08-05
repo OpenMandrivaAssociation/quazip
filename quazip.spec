@@ -65,6 +65,7 @@ for developing applications that use %{libname}.
 %doc doc/html
 %{_includedir}/%{name}
 %{_libdir}/libquazip.so
+%{_libdir}/pkgconfig/%{name}.pc
 
 #------------------------------------------------------------------------------
 
