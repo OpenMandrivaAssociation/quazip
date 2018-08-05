@@ -5,12 +5,12 @@
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
-Version:	0.7.3
-Release:	2
+Version:	0.7.6
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://quazip.sourceforge.net/
-Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+SOurce0:	https://github.com/stachenov/quazip/archive/%{version}.tar.gz
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
