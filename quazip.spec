@@ -14,6 +14,7 @@ SOurce0:	https://github.com/stachenov/quazip/archive/%{version}.tar.gz
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	qt5-devel
 
 %description
