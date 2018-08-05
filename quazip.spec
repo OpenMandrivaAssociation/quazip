@@ -61,7 +61,7 @@ This package contains libraries, header files and documentation
 for developing applications that use %{libname}.
 
 %files -n %{devname}
-%doc COPYING* NEWS.txt README.txt
+%doc COPYING* NEWS.txt
 %doc doc/html
 %{_includedir}/%{name}
 %{_libdir}/libquazip.so
