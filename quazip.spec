@@ -9,7 +9,7 @@ Version:	0.7.6
 Release:	2
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://quazip.sourceforge.net/
+Url:		https://github.com/stachenov/quazip
 SOurce0:	https://github.com/stachenov/quazip/archive/%{version}.tar.gz
 BuildRequires:	doxygen
 BuildRequires:	graphviz
