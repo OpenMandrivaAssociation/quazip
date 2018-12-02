@@ -9,7 +9,7 @@ Version:	0.7.6
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://quazip.sourceforge.net/
+Url:		https://github.com/stachenov/quazip
 SOurce0:	https://github.com/stachenov/quazip/archive/%{version}.tar.gz
 BuildRequires:	doxygen
 BuildRequires:	graphviz
@@ -60,11 +60,11 @@ This package contains libraries, header files and documentation
 for developing applications that use %{libname}.
 
 %files -n %{devname}
-%doc COPYING* NEWS.txt README.txt
+%doc COPYING* NEWS.txt
 %doc doc/html
 %{_includedir}/%{name}
 %{_libdir}/libquazip.so
-
+%{_libdir}/pkgconfig/quazip.pc
 #------------------------------------------------------------------------------
 
 %prep
