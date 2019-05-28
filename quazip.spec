@@ -1,16 +1,16 @@
 %define major 1
-%define libname %mklibname %{name} %{major}
-%define devname %mklibname -d %{name}
+%define libname %mklibname %{name}5 %{major}
+%define devname %mklibname -d %{name}5
 %define debug_package %nil
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
-Version:	0.7.6
-Release:	2
+Version:	0.8.1
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://github.com/stachenov/quazip
-SOurce0:	https://github.com/stachenov/quazip/archive/%{version}.tar.gz
+SOurce0:	https://github.com/stachenov/quazip/archive/v%{version}.tar.gz
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
@@ -46,7 +46,7 @@ QuaZIP provides complete abstraction of the ZIP/UNZIP API, for both reading
 from and writing to ZIP archives.
 
 %files -n %{libname}
-%{_libdir}/libquazip.so.%{major}*
+%{_libdir}/libquazip5.so.%{major}*
 
 #------------------------------------------------------------------------------
 
@@ -63,23 +63,18 @@ for developing applications that use %{libname}.
 %files -n %{devname}
 %doc COPYING* NEWS.txt
 %doc doc/html
-%{_includedir}/%{name}
-%{_libdir}/libquazip.so
-%{_libdir}/pkgconfig/%{name}.pc
+%{_includedir}/%{name}5
+%{_libdir}/libquazip5.so
+%{_datadir}/cmake/Modules/*.cmake
 
 #------------------------------------------------------------------------------
 
 %prep
 %setup -q
-
-# Fixes build and install
-sed -i 's\PREFIX/lib\PREFIX/%{_lib}\' %{name}/%{name}.pro
-# removing test programs
-sed -i 's\qztest\\g' %{name}.pro
+%cmake_qt5 -G Ninja
 
 %build
-%qmake_qt5 PREFIX=%{_prefix} QMAKE_CXXFLAGS_RELEASE= LIBS+=-lz
-%make
+%ninja_build -C build
 
 doxygen Doxyfile
 for file in doc/html/*; do
@@ -87,5 +82,6 @@ for file in doc/html/*; do
 done
 
 %install
-make INSTALL="install -p" INSTALL_ROOT=%{buildroot} install
-
+%ninja_install -C build
+# No need for static libs...
+rm -f %{buildroot}%{_libdir}/*.a
