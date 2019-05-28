@@ -10,12 +10,13 @@ Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://github.com/stachenov/quazip
-SOurce0:	https://github.com/stachenov/quazip/archive/v%{version}.tar.gz
+Source0:	https://github.com/stachenov/quazip/archive/v%{version}.tar.gz
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	qt5-devel
+BuildRequires:	cmake ninja cmake(ECM)
 
 %description
 QuaZIP is a simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package that
