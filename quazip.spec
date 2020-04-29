@@ -5,7 +5,7 @@
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
-Version:	0.8.1
+Version:	0.9
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
@@ -65,8 +65,9 @@ for developing applications that use %{libname}.
 %doc COPYING* NEWS.txt
 %doc doc/html
 %{_includedir}/%{name}5
+%{_libdir}/pkgconfig/quazip.pc
 %{_libdir}/libquazip5.so
-%{_datadir}/cmake/Modules/*.cmake
+%{_libdir}/cmake/QuaZip5/*.cmake
 
 #------------------------------------------------------------------------------
 
