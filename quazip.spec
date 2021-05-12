@@ -5,7 +5,7 @@
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
-Version:	0.9.1
+Version:	1.1
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
@@ -16,7 +16,7 @@ BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	qt5-devel
-BuildRequires:	cmake ninja cmake(ECM)
+BuildRequires:	cmake(ECM)
 
 %description
 QuaZIP is a simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package that
@@ -72,7 +72,7 @@ for developing applications that use %{libname}.
 #------------------------------------------------------------------------------
 
 %prep
-%setup -q
+%autosetup -p1
 %cmake_qt5 -G Ninja
 
 %build
@@ -80,7 +80,7 @@ for developing applications that use %{libname}.
 
 doxygen Doxyfile
 for file in doc/html/*; do
-	touch -r Doxyfile $file
+    touch -r Doxyfile $file
 done
 
 %install
