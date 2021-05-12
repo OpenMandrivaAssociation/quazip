@@ -11,6 +11,8 @@ License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://github.com/stachenov/quazip
 Source0:	https://github.com/stachenov/quazip/archive/v%{version}.tar.gz
+# (tpg) fix build with zlib-ng
+Patch0:		quazip-1.1-no-ZEXPORT.patch
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
