@@ -1,0 +1,63 @@
+diff -up quazip-1.1/quazip/minizip_crypt.h.omv~ quazip-1.1/quazip/minizip_crypt.h
+--- quazip-1.1/quazip/minizip_crypt.h.omv~	2021-05-13 00:12:25.370202556 +0200
++++ quazip-1.1/quazip/minizip_crypt.h	2021-05-13 00:12:33.056317193 +0200
+@@ -34,7 +34,7 @@
+ /***********************************************************************
+  * Return the next byte in the pseudo-random sequence
+  */
+-static int decrypt_byte(unsigned long* pkeys, const z_crc_t FAR * pcrc_32_tab QUAZIP_UNUSED)
++static int decrypt_byte(unsigned long* pkeys, const z_crc_t * pcrc_32_tab QUAZIP_UNUSED)
+ {
+     //(void) pcrc_32_tab; /* avoid "unused parameter" warning */
+     unsigned temp;  /* POTENTIAL BUG:  temp*(temp^1) may overflow in an
+@@ -48,7 +48,7 @@ static int decrypt_byte(unsigned long* p
+ /***********************************************************************
+  * Update the encryption keys with the next byte of plain text
+  */
+-static int update_keys(unsigned long* pkeys,const z_crc_t FAR * pcrc_32_tab,int c)
++static int update_keys(unsigned long* pkeys,const z_crc_t * pcrc_32_tab,int c)
+ {
+     (*(pkeys+0)) = CRC32((*(pkeys+0)), c);
+     (*(pkeys+1)) += (*(pkeys+0)) & 0xff;
+@@ -65,7 +65,7 @@ static int update_keys(unsigned long* pk
+  * Initialize the encryption keys and the random header according to
+  * the given password.
+  */
+-static void init_keys(const char* passwd,unsigned long* pkeys,const z_crc_t FAR * pcrc_32_tab)
++static void init_keys(const char* passwd,unsigned long* pkeys,const z_crc_t * pcrc_32_tab)
+ {
+     *(pkeys+0) = 305419896L;
+     *(pkeys+1) = 591751049L;
+@@ -95,7 +95,7 @@ static int crypthead(passwd, buf, bufSiz
+     unsigned char *buf;         /* where to write header */
+     int bufSize;
+     unsigned long* pkeys;
+-    const z_crc_t FAR * pcrc_32_tab;
++    const z_crc_t * pcrc_32_tab;
+     unsigned long crcForCrypting;
+ {
+     int n;                       /* index in random header */
+diff -up quazip-1.1/quazip/unzip.c.omv~ quazip-1.1/quazip/unzip.c
+--- quazip-1.1/quazip/unzip.c.omv~	2021-05-13 00:12:43.098466938 +0200
++++ quazip-1.1/quazip/unzip.c	2021-05-13 00:12:45.936509251 +0200
+@@ -195,7 +195,7 @@ typedef struct
+ 
+ #    ifndef NOUNCRYPT
+     unsigned long keys[3];     /* keys defining the pseudo-random sequence */
+-    const z_crc_t FAR * pcrc_32_tab;
++    const z_crc_t * pcrc_32_tab;
+ #    endif
+ } unz64_s;
+ 
+diff -up quazip-1.1/quazip/zip.c.omv~ quazip-1.1/quazip/zip.c
+--- quazip-1.1/quazip/zip.c.omv~	2021-05-13 00:12:07.918942190 +0200
++++ quazip-1.1/quazip/zip.c	2021-05-13 00:12:11.040988778 +0200
+@@ -170,7 +170,7 @@ typedef struct
+     ZPOS64_T totalUncompressedData;
+ #ifndef NOCRYPT
+     unsigned long keys[3];     /* keys defining the pseudo-random sequence */
+-    const z_crc_t FAR * pcrc_32_tab;
++    const z_crc_t * pcrc_32_tab;
+     int crypt_header_size;
+ #endif
+ } curfile64_info;
