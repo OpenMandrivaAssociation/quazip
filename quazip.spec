@@ -24,6 +24,8 @@ BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	%mklibname -d Qt6Test
 BuildRequires:	%mklibname -d Qt6Core
+BuildRequires:	%mklibname -d Qt6Network
+BuildRequires:	%mklibname -d Qt6Core5Compat
 
 %description
 QuaZIP is a simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package that
