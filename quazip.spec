@@ -22,6 +22,7 @@ BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(ECM)
+BuildRequires:	cmake(Qt6)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	%mklibname -d Qt6Test
 BuildRequires:	%mklibname -d Qt6Core
