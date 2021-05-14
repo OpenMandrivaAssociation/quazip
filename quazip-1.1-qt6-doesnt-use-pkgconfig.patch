@@ -1,0 +1,25 @@
+diff -up quazip-1.1/CMakeLists.txt.omv~ quazip-1.1/CMakeLists.txt
+--- quazip-1.1/CMakeLists.txt.omv~	2021-05-15 00:48:08.273759876 +0200
++++ quazip-1.1/CMakeLists.txt	2021-05-15 00:49:26.794856151 +0200
+@@ -32,7 +32,9 @@ if(QUAZIP_QT_MAJOR_VERSION EQUAL 6)
+                          OPTIONAL_COMPONENTS Network Test)
+ 	set(QUAZIP_LIB_QT_LIBRARIES Qt6::Core Qt6::Core5Compat)
+ 	set(QUAZIP_TEST_QT_LIBRARIES Qt6::Core Qt6::Core5Compat Qt6::Network Qt6::Test)
+-	set(QUAZIP_PKGCONFIG_REQUIRES Qt6Core)
++	# Qt6 doesn't use cmake
++	#	set(QUAZIP_PKGCONFIG_REQUIRES Qt6Core)
++	set(QUAZIP_DEPLIBS -lQt6Core)
+ 	if (Qt6Network_FOUND AND Qt6Test_FOUND)
+                 set(QUAZIP_ENABLE_TESTS ON)
+         endif()
+diff -up quazip-1.1/quazip/quazip.pc.cmakein.omv~ quazip-1.1/quazip/quazip.pc.cmakein
+--- quazip-1.1/quazip/quazip.pc.cmakein.omv~	2021-05-15 00:48:52.751380872 +0200
++++ quazip-1.1/quazip/quazip.pc.cmakein	2021-05-15 00:49:04.675547348 +0200
+@@ -6,6 +6,6 @@ includedir=${prefix}/include
+ Name: QuaZip-Qt@QUAZIP_QT_MAJOR_VERSION@
+ Description: Minizip wrapper library for Qt @QUAZIP_QT_MAJOR_VERSION@.x
+ Version: @QUAZIP_LIB_VERSION@
+-Libs: -l@QUAZIP_LIB_FILE_NAME@
++Libs: -l@QUAZIP_LIB_FILE_NAME@ @QUAZIP_DEPLIBS@
+ Cflags: -I${includedir}/@QUAZIP_DIR_NAME@ -I${includedir}/@QUAZIP_INCLUDE_PATH@
+ Requires: @QUAZIP_PKGCONFIG_REQUIRES@

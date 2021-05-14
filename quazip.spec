@@ -17,6 +17,7 @@ Source0:	https://github.com/stachenov/quazip/archive/v%{version}.tar.gz
 Patch0:		quazip-1.1-no-ZEXPORT.patch
 Patch1:		quazip-1.1-zlib-ng.patch
 Patch2:		quazip-1.1-fix-cmake-files.patch
+Patch3:		quazip-1.1-qt6-doesnt-use-pkgconfig.patch
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
