@@ -23,6 +23,7 @@ BuildRequires:	pkgconfig(libzip)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	%mklibname -d Qt6Test
 BuildRequires:	%mklibname -d Qt6Core
 BuildRequires:	%mklibname -d Qt6Network
