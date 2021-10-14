@@ -2,8 +2,10 @@
 %define libname %mklibname %{name}1-qt5 %{major}
 %define devname %mklibname -d %{name}1-qt5
 
+%if 0
 %define lib6name %mklibname %{name}1-qt6 %{major}
 %define dev6name %mklibname -d %{name}1-qt6
+%endif
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
@@ -23,13 +25,15 @@ BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(ECM)
-BuildRequires:	cmake(Qt6)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Test)
+%if 0
+BuildRequires:	cmake(Qt6)
 BuildRequires:	%mklibname -d Qt6Test
 BuildRequires:	%mklibname -d Qt6Core
 BuildRequires:	%mklibname -d Qt6Network
 BuildRequires:	%mklibname -d Qt6Core5Compat
+%endif
 
 %description
 QuaZIP is a simple C++ wrapper over Gilles Vollant's ZIP/UNZIP package that
@@ -87,7 +91,7 @@ for developing applications that use %{libname}.
 %{_libdir}/cmake/QuaZip-Qt5-%{version}/*.cmake
 
 #------------------------------------------------------------------------------
-
+%if 0
 %package -n %{lib6name}
 Summary:	Qt/C++ wrapper for the minizip library for Qt 6.x
 
@@ -123,18 +127,22 @@ for developing applications that use %{libname}.
 %{_libdir}/pkgconfig/quazip1-qt6.pc
 %{_libdir}/libquazip1-qt6.so
 %{_libdir}/cmake/QuaZip-Qt6-%{version}/*.cmake
-
+%endif
 #------------------------------------------------------------------------------
 
 %prep
 %autosetup -p1
 %cmake_qt5 -G Ninja -DQUAZIP_QT_MAJOR_VERSION=5
 cd ..
+%if 0
 export CMAKE_BUILD_DIR=build-qt6
 %cmake -G Ninja -DQUAZIP_QT_MAJOR_VERSION=6
+%endif
 
 %build
+%if 0
 %ninja_build -C build-qt6
+%endif
 %ninja_build -C build
 
 doxygen Doxyfile
@@ -143,7 +151,9 @@ for file in doc/html/*; do
 done
 
 %install
+%if 0
 %ninja_install -C build-qt6
+%endif
 %ninja_install -C build
 
 # No need for static libs...
