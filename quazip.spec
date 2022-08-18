@@ -9,17 +9,17 @@
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
-Version:	1.1
-Release:	3
+Version:	1.3
+Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		https://github.com/stachenov/quazip
-Source0:	https://github.com/stachenov/quazip/archive/v%{version}.tar.gz
+Source0:	https://github.com/stachenov/quazip/archive/%{name}-%{version}.tar.gz
 # (tpg) fix build with zlib-ng
 Patch0:		quazip-1.1-no-ZEXPORT.patch
 Patch1:		quazip-1.1-zlib-ng.patch
 Patch2:		quazip-1.1-fix-cmake-files.patch
-Patch3:		quazip-1.1-qt6-doesnt-use-pkgconfig.patch
+#Patch3:		quazip-1.1-qt6-doesnt-use-pkgconfig.patch
 BuildRequires:	doxygen
 BuildRequires:	graphviz
 BuildRequires:	pkgconfig(libzip)
