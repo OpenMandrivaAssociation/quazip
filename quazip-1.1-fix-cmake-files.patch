@@ -1,14 +1,20 @@
-diff -up quazip-1.1/quazip/QuaZipConfig.cmake.in.omv~ quazip-1.1/quazip/QuaZipConfig.cmake.in
---- quazip-1.1/quazip/QuaZipConfig.cmake.in.omv~	2021-05-14 05:37:44.731825926 +0200
-+++ quazip-1.1/quazip/QuaZipConfig.cmake.in	2021-05-14 05:38:06.650757825 +0200
-@@ -13,8 +13,8 @@ elseif(@QUAZIP_QT_MAJOR_VERSION@ EQUAL 5
+--- a/quazip/QuaZipConfig.cmake.in
++++ b/quazip/QuaZipConfig.cmake.in
+@@ -11,7 +11,7 @@ elseif(@QUAZIP_QT_MAJOR_VERSION@ EQUAL 5
  elseif(@QUAZIP_QT_MAJOR_VERSION@ EQUAL 4)
  	find_dependency(Qt4 4.5.0 REQUIRED COMPONENTS QtCore)
  else()
 -    message(FATAL_ERROR "Qt version QUAZIP_QT_MAJOR_VERSION=@QUAZIP_QT_MAJOR_VERSION@ is unsupported")
 +    message(FATAL_ERROR "Qt version QUAZIP_QT_MAJOR_VERSION=${QUAZIP_QT_MAJOR_VERSION} is unsupported")
  endif()
+ 
+ if(@QUAZIP_BZIP2@)
+@@ -24,6 +24,6 @@ else()
+     find_dependency(ZLIB REQUIRED)
+ endif()
+ 
 -set_target_properties(QuaZip::QuaZip PROPERTIES IMPORTED_GLOBAL TRUE)
 +#set_target_properties(QuaZip::QuaZip PROPERTIES IMPORTED_GLOBAL TRUE)
  
  check_required_components(@QUAZIP_PACKAGE_NAME@)
+

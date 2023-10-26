@@ -31,7 +31,7 @@ diff -Naur a/quazip/unzip.c b/quazip/unzip.c
  {
      if (pzlib_filefunc32_def != NULL)
 @@ -784,7 +786,7 @@
-         return unzOpenInternal(file, NULL, 0, UNZ_DEFAULT_FLAGS);
+     return unzOpenInternal(file, NULL, 0, UNZ_DEFAULT_FLAGS);
  }
  
 -extern unzFile ZEXPORT unzOpen2_64 (voidpf file,
@@ -40,7 +40,7 @@ diff -Naur a/quazip/unzip.c b/quazip/unzip.c
  {
      if (pzlib_filefunc_def != NULL)
 @@ -799,12 +801,12 @@
-         return unzOpenInternal(file, NULL, 1, UNZ_DEFAULT_FLAGS);
+     return unzOpenInternal(file, NULL, 1, UNZ_DEFAULT_FLAGS);
  }
  
 -extern unzFile ZEXPORT unzOpen (voidpf file)
@@ -594,7 +594,7 @@ diff -Naur a/quazip/zip.c b/quazip/zip.c
  {
      zip64_internal ziinit;
 @@ -941,7 +943,7 @@
-     }
+     return (zipFile)zi;
  }
  
 -extern zipFile ZEXPORT zipOpen2 (voidpf file, int append, zipcharpc* globalcomment, zlib_filefunc_def* pzlib_filefunc32_def)
@@ -603,7 +603,7 @@ diff -Naur a/quazip/zip.c b/quazip/zip.c
      if (pzlib_filefunc32_def != NULL)
      {
 @@ -953,7 +955,7 @@
-         return zipOpen3(file, append, globalcomment, NULL, ZIP_DEFAULT_FLAGS);
+     return zipOpen3(file, append, globalcomment, NULL, ZIP_DEFAULT_FLAGS);
  }
  
 -extern zipFile ZEXPORT zipOpen2_64 (voidpf file, int append, zipcharpc* globalcomment, zlib_filefunc64_def* pzlib_filefunc_def)
