@@ -7,7 +7,7 @@
 
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
-Version:	1.4
+Version:	1.5
 Release:	1
 License:	LGPLv2+
 Group:		System/Libraries
