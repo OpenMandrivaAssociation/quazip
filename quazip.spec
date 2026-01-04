@@ -134,7 +134,7 @@ for developing applications that use %{libname}.
 
 %prep
 %autosetup -p1
-%cmake_qt5 -G Ninja -DQUAZIP_QT_MAJOR_VERSION=5
+%cmake -G Ninja -DQUAZIP_QT_MAJOR_VERSION=5
 cd ..
 
 export CMAKE_BUILD_DIR=build-qt6
