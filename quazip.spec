@@ -31,6 +31,7 @@ BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5Network)
 BuildRequires:	pkgconfig(Qt5Test)
+BuildRequires:	qmake5
 BuildRequires:	cmake(Qt6)
 BuildRequires:	%mklibname -d Qt6Test
 BuildRequires:	%mklibname -d Qt6Core
