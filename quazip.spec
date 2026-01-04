@@ -5,6 +5,11 @@
 %define lib6name %mklibname %{name}1-qt6 %{major}
 %define dev6name %mklibname -d %{name}1-qt6
 
+# Get rid of the (cmake(qt5) or cmake(Qt5)) requirement for Qt6
+# (It's detected as a hard requirement because it's referenced
+# by the cmake files)
+%global __requires_exclude ^.*cmake\\((Qt4|Qt5)\\).*$
+
 Summary:	Qt/C++ wrapper for the minizip library
 Name:		quazip
 Version:	1.5
@@ -24,6 +29,7 @@ BuildRequires:	pkgconfig(libzip)
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	cmake(ECM)
 BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5Network)
 BuildRequires:	pkgconfig(Qt5Test)
 BuildRequires:	cmake(Qt6)
 BuildRequires:	%mklibname -d Qt6Test
